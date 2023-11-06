@@ -50,6 +50,7 @@ function getRandomInt(max) {
 }
 let x;
 let y;
+let attempt = 0
 function fun() {
     board.append(plot)
     x = 100 * getRandomInt(4);
@@ -60,6 +61,10 @@ function fun() {
     console.log(x)
     console.log(y)
     playerScoreCalc()
+    attempt++
+    if (attempt == 3) {
+        document.querySelector('button').disabled = true
+    }
 }
 
 function playerScoreCalc() {
@@ -67,10 +72,10 @@ function playerScoreCalc() {
     if ((x < 248 && x > 154) && (y < 268 && y > 161)) {
         playerPoint = 15
     }
-    else if (((x < 315 && x > 250) || (x > 85 && x < 150)) && ((y < 160 && y > 90) || (x > 260 &&  < 330))) {
+    else if (((x < 315 && x > 200) || (x > 85 && x < 150)) && ((y < 160 && y > 90) || (y > 260 && y < 330))) {
         playerPoint = 10
     }
-    else if ((x < 395 && x > 9) && (y < 450 && y > 9)) {
+    else if (((x < 395 && x > 320) || (x < 85 && x > 10)) && ((y < 85 && y > 10) || (y > 330 && y < 410))) {
         playerPoint = 5
     }
     console.log(playerPoint)
