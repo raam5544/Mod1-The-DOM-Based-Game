@@ -1,0 +1,69 @@
+body {
+    background-color: beige;
+}
+
+.main {
+    background-color: aqua;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+}
+
+.player1 {
+    display: inline-flex;
+    flex-direction: column;
+    background-color: blueviolet;
+    width: 50%;
+
+}
+
+.board {
+    /* display: flex;
+    flex-direction: row; */
+    width: 190%;
+
+}
+
+.boardGrandChild {
+    border: solid black;
+    height: 40%;
+    width: 40%;
+    border-radius: 50px;
+}
+
+.boardChild {
+    border: solid blue;
+    height: 60%;
+    width: 60%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 80px;
+}
+
+.boardParent {
+    border: solid red;
+    height: 400px;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 150px;
+}
+
+button {
+    padding: 20px;
+}
+
+.player2 {
+    display: inline-flex;
+    flex-direction: column;
+    background-color: blueviolet;
+    width: 50%;
+
+}
+
+h3 {
+    color: red;
+}

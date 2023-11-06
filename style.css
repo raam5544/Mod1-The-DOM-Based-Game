@@ -1,0 +1,43 @@
+body {
+    background-color: white;
+}
+
+.main {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-self: center;
+    flex-direction: column;
+}
+
+.playerSelectionCont {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    /* background-color: aliceblue; */
+    height: 20%;
+    width: 40%;
+    margin: 40px;
+    padding: 20px;
+    font-size: large;
+    color: blue;
+}
+
+.roundSelection {
+    margin: 30px;
+    padding: 20px;
+    color: blue;
+}
+
+.loadGameButton {
+    padding: 20px;
+    margin: 30px;
+
+}
+
+h1 {
+    color: blue;
+}
+
