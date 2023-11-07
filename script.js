@@ -47,7 +47,7 @@ const board = document.querySelector('.board')
 const board2 = document.querySelector('#board2')
 
 const player2Button = document.querySelector('#player2Button')
-console.log(board2)
+// console.log(board2)
 
 const roundInfor = document.querySelector('.roundInfo')
 let round = 1
@@ -56,9 +56,17 @@ let player1AccumulatedScore = 0
 const playerScoreAccum = document.querySelector('#player1AccuScore')
 playerScoreAccum.textContent = `Player 1 Accu Score: ${player1AccumulatedScore}`
 
+let oppAccumulatedScore = 0
+const oppScoreAccum = document.querySelector('#oppAccuScore')
+oppScoreAccum.textContent = `Opp. Accu Score: ${oppAccumulatedScore}`
+
 let playerPoint = 0
 const player1HitPoint = document.querySelector('#player1HitPoint')
 player1HitPoint.textContent = `Player 1 Hit Point: ${playerPoint}`
+
+let oppPoint = 0
+const oppHitPoint = document.querySelector('#oppHitPoint')
+player1HitPoint.textContent = `Opp. Hit Point: ${oppPoint}`
 
 function getRandomInt(max) {
     return Math.floor(Math.random() * max);
@@ -70,7 +78,7 @@ let attempt = 0
 const plotAreas = [[[168, 178], [136, 213], [170, 224], [165, 203]], // 15 points area
 [[116, 229], [227, 147], [95, 253], [214, 306]], // 10 points area
 [[135, 43], [153, 360], [48, 96], [157, 307]], // 5 points area
-[[266, 15], [307, 385], [30, 365], [23, 350]]] // No points area
+[[266, 15], [318, 372], [30, 365], [23, 350]]] // No points area
 
 
 function fun() {
@@ -80,13 +88,34 @@ function fun() {
     plot.style.position = "absolute";
     plot.style.left = plotAreas[x][y][0] + 'px';
     plot.style.top = plotAreas[x][y][1] + 'px';
-    console.log(plot.style.left)
-    console.log(plot.style.top)
+    // console.log(plot.style.left)
+    // console.log(plot.style.top)
     playerScoreCalc()
     attempt++
     if (attempt == 3) {
         document.querySelector('#player1Butt').disabled = true
+        isPlayerfinished = true
     }
+    compPlayer()
+
+}
+
+function OppFun() {
+    board.append(plot)
+    x = getRandomInt(4);
+    y = getRandomInt(plotAreas[x].length - 1);
+    plot.style.position = "absolute";
+    plot.style.left = plotAreas[x][y][0] + 'px';
+    plot.style.top = plotAreas[x][y][1] + 'px';
+    // console.log(plot.style.left)
+    // console.log(plot.style.top)
+    playerScoreCalc()
+    attempt++
+    if (attempt == 3) {
+        document.querySelector('#player1Butt').disabled = true
+        isPlayerfinished = true
+    }
+    compPlayer()
 
 }
 
@@ -115,61 +144,113 @@ function playerScoreCalc() {
 
     for (let j of plotAreas[0]) {
         if (j[0] === plotAreas[x][y][0] && j[1] === plotAreas[x][y][1]) {
+            // playerPoint = 0
             playerPoint = 15
-            console.log('im here')
+            // console.log('im here')
+        }
+
+    }
+    for (let j of plotAreas[1]) {
+        if (j[0] === plotAreas[x][y][0] && j[1] === plotAreas[x][y][1]) {
+            playerPoint = 0
+            playerPoint = 10
+            // console.log('im here')
+        }
+
+    }
+    for (let j of plotAreas[2]) {
+        if (j[0] === plotAreas[x][y][0] && j[1] === plotAreas[x][y][1]) {
+            playerPoint = 0
+            playerPoint = 5
+            // console.log('im here')
+        }
+    }
+
+    for (let j of plotAreas[3]) {
+        if (j[0] === plotAreas[x][y][0] && j[1] === plotAreas[x][y][1]) {
+            playerPoint = 0
+            // console.log('im here')
+        }
+    }
+
+    // console.log(plotAreas[0])
+    // console.log(plotAreas[x][y][0], plotAreas[x][y][1])
+
+    player1HitPoint.textContent = `Player1 Hit Point: ${playerPoint}`
+    player1AccumulatedScore += playerPoint
+    playerScoreAccum.textContent = `Player 1 Accu Score: ${player1AccumulatedScore}`
+    // console.log(playerPoint)
+}
+
+const oppPlotAreas = [[[692, 178], [716, 205], [668, 230], [692, 209]], // 15 points area
+[[638, 133], [724, 140], [688, 292], [630, 261]], // 10 points area
+[[728, 43], [815, 209], [744, 356], [569, 267]], // 5 points area
+[[568, 391], [827, 35], [30, 365], [562, 35]]] // No points area
+
+function OpponentScoreCalc() {
+
+    for (let j of plotAreas[0]) {
+        if (j[0] === plotAreas[x][y][0] && j[1] === plotAreas[x][y][1]) {
+            oppPoint = 0
+            oppPoint = 15
+            // console.log('im here')
         }
     }
     for (let j of plotAreas[1]) {
         if (j[0] === plotAreas[x][y][0] && j[1] === plotAreas[x][y][1]) {
-            playerPoint = 10
-            console.log('im here')
+            oppPoint = 0
+            oppPoint = 10
+            // console.log('im here')
         }
     }
     for (let j of plotAreas[2]) {
         if (j[0] === plotAreas[x][y][0] && j[1] === plotAreas[x][y][1]) {
-            playerPoint = 5
-            console.log('im here')
+            oppPoint = 0
+            oppPoint = 5
+            // console.log('im here')
         }
     }
 
-    console.log(plotAreas[0])
-    console.log(plotAreas[x][y][0], plotAreas[x][y][1])
-
-    player1HitPoint.textContent = `Player 1 Hit Point: ${playerPoint}`
-    player1AccumulatedScore += playerPoint
-    playerScoreAccum.textContent = `Player 1 Accu Score: ${player1AccumulatedScore}`
-    console.log(playerPoint)
-
-}
-let isTwoPlayer = true
-
-function compPlayer() {
-    if (!isTwoPlayer) {
-        function fun() {
-            board2.append(plot)
-            x = 600 + (100 * getRandomInt(4));
-            y = 100 * getRandomInt(4);
-            plot.style.position = "absolute";
-            plot.style.left = x + 'px';;
-            plot.style.top = y + 'px';
-            console.log(x)
-            console.log(y)
-            playerScoreCalc()
+    for (let j of plotAreas[3]) {
+        if (j[0] === plotAreas[x][y][0] && j[1] === plotAreas[x][y][1]) {
+            playerPoint = 0
+            // console.log('im here')
         }
-        let compCount = 1
-        const interval = setInterval(() => {
-            fun()
-            if (compCount == 3) {
-                clearInterval(interval)
-            }
-            compCount++
-        }, 3000);
+    }
 
-    } else player2Button.disabled = false
+    // console.log(plotAreas[0])
+    // console.log(plotAreas[x][y][0], plotAreas[x][y][1])
+
+    oppHitPoint.textContent = `Opponent Hit Point: ${oppPoint}`
+    oppAccumulatedScore += oppPoint
+    oppScoreAccum.textContent = `Opp. Accu Score: ${oppAccumulatedScore}`
+    console.log(oppPoint)
+}
+
+
+let isTwoPlayer = false
+let isPlayerfinished = false
+
+if (isTwoPlayer) {
+    player2Button.disabled = false
+}
+function compPlayer() {
+    if (!isTwoPlayer && isPlayerfinished) {
+        board2.append(plot)
+        x = getRandomInt(4);
+        y = getRandomInt(oppPlotAreas[x].length - 1);
+        plot.style.position = "absolute";
+        plot.style.left = oppPlotAreas[x][y][0] + 'px';
+        plot.style.top = oppPlotAreas[x][y][1] + 'px';
+        OpponentScoreCalc()
+    }
 
 }
 roundInfor.textContent = `Round: ${round} `
 function roundUp() {
+    playerPoint = 0
+    oppPoint = 0
+    plot.remove()
     document.querySelector('#player1Butt').disabled = false
     attempt = 0
     round = round + 1
@@ -178,7 +259,48 @@ function roundUp() {
     if (round === 3) {
         document.querySelector('#roundUpButt').disabled = true
     }
-    console.log(board.getAttribute('coords'))
+}
+function playerFun() {
+    board.append(plot)
+    x = getRandomInt(4);
+    y = getRandomInt(plotAreas[x].length - 1);
+    plot.style.position = "absolute";
+    plot.style.left = plotAreas[x][y][0] + 'px';
+    plot.style.top = plotAreas[x][y][1] + 'px';
+    // console.log(plot.style.left)
+    // console.log(plot.style.top)
+    playerScoreCalc()
+    attempt++
+    if (attempt == 3) {
+        document.querySelector('#player1Butt').disabled = true
+        isPlayerfinished = true
+    }
+
 }
 
+function winState() {
+    if (attempt == 3) {
+        if (player1AccumulatedScore > oppAccumulatedScore) {
+            middle.append(document.createElement('h3').textContent = 'Player wins')
+        } else if (oppAccumulatedScore > player1AccumulatedScore) {
+            middle.append(document.createElement('h3').textContent = 'Opponent wins')
+        }
+    }
+}
 
+function main() {
+    let compCount = 0
+    playerFun()
+    setTimeout(() => {
+        const interval = setInterval(() => {
+            compPlayer()
+            console.log('micky')
+            compCount++
+            if (compCount == 1) {
+                clearInterval(interval)
+            }
+        }, 3000);
+
+    }, 5000);
+    winState()
+}
