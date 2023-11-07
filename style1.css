@@ -8,6 +8,7 @@ body {
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: space-between;
+    flex-grow: 1 2 1;
 }
 
 .player1 {
@@ -66,4 +67,11 @@ button {
 
 h3 {
     color: red;
+}
+
+.middle {
+    display: flex;
+    flex-wrap: nowrap;
+    width: 30%;
+    flex-direction: column;
 }
