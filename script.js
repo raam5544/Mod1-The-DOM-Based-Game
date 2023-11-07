@@ -67,16 +67,19 @@ let x;
 let y;
 let attempt = 0
 
-const plotAreas = [[[164, 199], [144, 291], [191, 215]], [[116, 229], [227, 147], [95, 253]]]
+const plotAreas = [[[164, 199], [144, 291], [191, 215], [135, 203]], // 15 points area
+[[116, 229], [227, 147], [95, 253], [214, 306]], // 10 points area
+[[135, 43], [153, 360], [48, 96], [157, 307]], // 5 points area
+[[266, 15], [307, 385], [30, 365], [23, 350]]] // No points area
 
 
 function fun() {
     board.append(plot)
-    x = getRandomInt(plotAreas.length - 1);
-    // y = getRandomInt(plotAreas.length - 1);
+    x = getRandomInt(4);
+    y = getRandomInt(plotAreas[x].length - 1);
     plot.style.position = "absolute";
-    plot.style.left = plotAreas[x][x][1] + 'px';
-    plot.style.top = plotAreas[x][x][1] + 'px';
+    plot.style.left = plotAreas[x][y][0] + 'px';
+    plot.style.top = plotAreas[x][y][1] + 'px';
     console.log(plot.style.left)
     console.log(plot.style.top)
     playerScoreCalc()
@@ -109,7 +112,10 @@ const boardGrandChild = document.querySelector('boardGrandChild')
 
 
 function playerScoreCalc() {
-
+    if (plotAreas[x].includes([plot.style.left, plot.style.top])) {
+        playerPoint = 15
+    }
+    console.log()
 
     player1HitPoint.textContent = `Player 1 Hit Point: ${playerPoint}`
     player1AccumulatedScore += playerPoint
