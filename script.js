@@ -67,7 +67,7 @@ let x;
 let y;
 let attempt = 0
 
-const plotAreas = [[[164, 199], [144, 291], [191, 215], [135, 203]], // 15 points area
+const plotAreas = [[[168, 178], [136, 213], [170, 224], [165, 203]], // 15 points area
 [[116, 229], [227, 147], [95, 253], [214, 306]], // 10 points area
 [[135, 43], [153, 360], [48, 96], [157, 307]], // 5 points area
 [[266, 15], [307, 385], [30, 365], [23, 350]]] // No points area
@@ -112,10 +112,28 @@ const boardGrandChild = document.querySelector('boardGrandChild')
 
 
 function playerScoreCalc() {
-    if (plotAreas[x].includes([plot.style.left, plot.style.top])) {
-        playerPoint = 15
+
+    for (let j of plotAreas[0]) {
+        if (j[0] === plotAreas[x][y][0] && j[1] === plotAreas[x][y][1]) {
+            playerPoint = 15
+            console.log('im here')
+        }
     }
-    console.log()
+    for (let j of plotAreas[1]) {
+        if (j[0] === plotAreas[x][y][0] && j[1] === plotAreas[x][y][1]) {
+            playerPoint = 10
+            console.log('im here')
+        }
+    }
+    for (let j of plotAreas[2]) {
+        if (j[0] === plotAreas[x][y][0] && j[1] === plotAreas[x][y][1]) {
+            playerPoint = 5
+            console.log('im here')
+        }
+    }
+
+    console.log(plotAreas[0])
+    console.log(plotAreas[x][y][0], plotAreas[x][y][1])
 
     player1HitPoint.textContent = `Player 1 Hit Point: ${playerPoint}`
     player1AccumulatedScore += playerPoint
