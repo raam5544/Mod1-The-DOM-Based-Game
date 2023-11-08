@@ -1,3 +1,14 @@
+const definedRound = localStorage.getItem('roundsNum');
+const selection = localStorage.getItem('selection')
+console.log(selection)
+
+let isTwoPlayer = false
+if (selection == "twoPlayer") {
+    isTwoPlayer = true
+} else if (selection == "computer") {
+    isTwoPlayer = false
+}
+
 
 // Load Game function
 
@@ -23,7 +34,7 @@
 // // Expected output: 0, 1 or 2
 
 
-const boardParent = addEventListener('click', (e) => { console.log(e.x, e.y) })
+document.querySelector('.board').addEventListener('click', (e) => { console.log(e.x, e.y) })
 
 const plot = document.createElement('h3')
 plot.textContent = 'X'
@@ -62,10 +73,10 @@ let x;
 let y;
 let attempt = 0
 
-const plotAreas = [[[168, 178], [136, 213], [170, 224], [165, 203]], // 15 points area
-[[116, 229], [227, 147], [95, 253], [214, 306]], // 10 points area
-[[135, 43], [153, 360], [48, 96], [157, 307]], // 5 points area
-[[266, 15], [318, 372], [30, 365], [23, 350]]] // No points area
+const plotAreas = [[[194, 205], [217, 207], [193, 236], [164, 211]], // 15 points area
+[[273, 222], [247, 275], [110, 222], [159, 123]], // 10 points area
+[[346, 207], [295, 353], [48, 263], [94, 78]], // 5 points area
+[[368, 37], [369, 372], [27, 379], [34, 31]]] // No points area
 
 
 function fun() {
@@ -169,10 +180,10 @@ function playerScoreCalc() {
     // console.log(playerPoint)
 }
 
-const oppPlotAreas = [[[692, 178], [716, 205], [668, 230], [692, 209]], // 15 points area
-[[638, 133], [724, 140], [688, 292], [630, 261]], // 10 points area
-[[728, 43], [815, 209], [744, 356], [569, 267]], // 5 points area
-[[568, 391], [827, 35], [30, 365], [562, 35]]] // No points area
+const oppPlotAreas = [[[818, 206], [838, 223], [795, 210], [834, 191]], // 15 points area
+[[818, 125], [896, 205], [866, 282], [740, 227]], // 10 points area
+[[812, 47], [962, 201], [885, 359], [672, 207]], // 5 points area
+[[653, 29], [994, 39], [992, 365], [652, 376]]] // No points area
 
 function OpponentScoreCalc() {
 
@@ -215,7 +226,7 @@ function OpponentScoreCalc() {
 }
 
 
-let isTwoPlayer = false
+
 let isPlayerfinished = false
 
 if (isTwoPlayer) {
@@ -252,7 +263,8 @@ function roundUp() {
     round = round + 1
     console.log(round)
     roundInfor.textContent = `Round: ${round} `
-    if (round === 3) {
+    console.log(definedRound)
+    if (round == definedRound) {
         document.querySelector('#roundUpButt').disabled = true
     }
 }
@@ -275,7 +287,7 @@ function playerFun() {
 }
 
 function winState() {
-    if (round == 3 && compFinished == true) {
+    if (round == definedRound && compFinished == true) {
         if (player1AccumulatedScore > oppAccumulatedScore) {
             middle.append(document.createElement('h3').textContent = 'Player wins')
         } else if (oppAccumulatedScore > player1AccumulatedScore) {
