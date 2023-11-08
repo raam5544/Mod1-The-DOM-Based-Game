@@ -1,19 +1,4 @@
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // Load Game function
 
 // document.querySelector('button').addEventListener('click', (e) => {
@@ -67,6 +52,8 @@ player1HitPoint.textContent = `Player 1 Hit Point: ${playerPoint}`
 let oppPoint = 0
 const oppHitPoint = document.querySelector('#oppHitPoint')
 player1HitPoint.textContent = `Opp. Hit Point: ${oppPoint}`
+
+const middle = document.querySelector('.middle')
 
 function getRandomInt(max) {
     return Math.floor(Math.random() * max);
@@ -224,7 +211,7 @@ function OpponentScoreCalc() {
     oppHitPoint.textContent = `Opponent Hit Point: ${oppPoint}`
     oppAccumulatedScore += oppPoint
     oppScoreAccum.textContent = `Opp. Accu Score: ${oppAccumulatedScore}`
-    console.log(oppPoint)
+    // console.log(oppPoint)
 }
 
 
@@ -235,22 +222,31 @@ if (isTwoPlayer) {
     player2Button.disabled = false
 }
 function compPlayer() {
-    if (!isTwoPlayer && isPlayerfinished) {
-        board2.append(plot)
-        x = getRandomInt(4);
-        y = getRandomInt(oppPlotAreas[x].length - 1);
-        plot.style.position = "absolute";
-        plot.style.left = oppPlotAreas[x][y][0] + 'px';
-        plot.style.top = oppPlotAreas[x][y][1] + 'px';
-        OpponentScoreCalc()
-    }
+    for (let i = 0; i < attempt; i++) {
+        task(i)
+        function task(i) {
+            setTimeout(() => {
+                if (!isTwoPlayer && isPlayerfinished) {
+                    board2.append(plot)
+                    x = getRandomInt(4);
+                    y = getRandomInt(oppPlotAreas[x].length - 1);
+                    plot.style.position = "absolute";
+                    plot.style.left = oppPlotAreas[x][y][0] + 'px';
+                    plot.style.top = oppPlotAreas[x][y][1] + 'px';
+                    console.log('Im here')
+                    OpponentScoreCalc()
+                }
+            }, 2000 * i);
+        }
 
+    }
+    compFinished = true
 }
 roundInfor.textContent = `Round: ${round} `
 function roundUp() {
     playerPoint = 0
     oppPoint = 0
-    plot.remove()
+    // plot.remove()
     document.querySelector('#player1Butt').disabled = false
     attempt = 0
     round = round + 1
@@ -275,11 +271,11 @@ function playerFun() {
         document.querySelector('#player1Butt').disabled = true
         isPlayerfinished = true
     }
-
+    console.log(isPlayerfinished)
 }
 
 function winState() {
-    if (attempt == 3) {
+    if (round == 3 && compFinished == true) {
         if (player1AccumulatedScore > oppAccumulatedScore) {
             middle.append(document.createElement('h3').textContent = 'Player wins')
         } else if (oppAccumulatedScore > player1AccumulatedScore) {
@@ -287,20 +283,46 @@ function winState() {
         }
     }
 }
+let compFinished = false
+let u = 0
+
+// setTimeout(() => {
+//     const interval = setInterval(() => {
+//         compPlayer()
+//         console.log('micky')
+//         compCount++
+//         if (compCount == 1) {
+//             clearInterval(interval)
+//         }
+//     }, 3000);
+
+// }, 5000);
+
+// compPlayer()
+
+// (function loop() {
+//     setTimeout(() => {
+//         compPlayer()
+
+//         loop();
+//     }, 3000);
+// })();
+
+// winState()
 
 function main() {
-    let compCount = 0
     playerFun()
-    setTimeout(() => {
-        const interval = setInterval(() => {
-            compPlayer()
-            console.log('micky')
-            compCount++
-            if (compCount == 1) {
-                clearInterval(interval)
-            }
-        }, 3000);
 
-    }, 5000);
-    winState()
+    if (attempt == 3) {
+        setTimeout(() => {
+            compPlayer()
+        }, 3000);
+        if (round == 3 && compFinished == true) {
+            setTimeout(() => {
+                winState()
+            }, 9000);
+
+        }
+    }
 }
+
