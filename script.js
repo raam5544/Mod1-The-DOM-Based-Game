@@ -34,10 +34,10 @@ if (selection == "twoPlayer") {
 // // Expected output: 0, 1 or 2
 
 
-document.querySelector('.board').addEventListener('click', (e) => { console.log(e.x, e.y) })
+document.querySelector('#board2').addEventListener('click', (e) => { console.log(e.x, e.y) })
 
-const plot = document.createElement('h3')
-plot.textContent = 'X'
+const plot = document.createElement('img')
+plot.src = "dart.jpg"
 
 const board = document.querySelector('.board')
 const board2 = document.querySelector('#board2')
@@ -182,7 +182,7 @@ function playerScoreCalc() {
 
 const oppPlotAreas = [[[818, 206], [838, 223], [795, 210], [834, 191]], // 15 points area
 [[818, 125], [896, 205], [866, 282], [740, 227]], // 10 points area
-[[812, 47], [962, 201], [885, 359], [672, 207]], // 5 points area
+[[708, 87], [962, 53], [963, 233], [815, 361]], // 5 points area
 [[653, 29], [994, 39], [992, 365], [652, 376]]] // No points area
 
 function OpponentScoreCalc() {
