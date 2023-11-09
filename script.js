@@ -10,7 +10,7 @@ if (selection == "twoPlayer") {
 }
 
 
-document.querySelector('#board1').addEventListener('click', (e) => { console.log(e.x, e.y) })
+document.querySelector('#board2').addEventListener('click', (e) => { console.log(e.x, e.y) })
 
 const plot = document.createElement('img')
 plot.src = "dart.jpg"
@@ -50,10 +50,10 @@ let x;
 let y;
 let attempt = 0
 
-const plotAreas = [[[234, 186], [236, 209], [210, 233], [266, 230]], // 15 points area
-[[237, 109], [322, 249], [192, 275], [137, 193]], // 10 points area
+const plotAreas = [[[234, 186], [236, 209], [210, 233], [266, 230], [212, 215], [256, 235], [206, 217]], // 15 points area
+[[237, 109], [322, 249], [192, 275], [137, 193], [144, 155], [148, 258], [334, 211], [213, 308]], // 10 points area
 [[230, 32], [414, 215], [240, 350], [58, 195], [96, 83], [424, 305], [237, 370], [50, 163]], // 5 points area
-[[29, 22], [453, 27], [448, 380], [28, 384]]] // No points area
+[[29, 22], [453, 27], [448, 380], [28, 384], [483, 210], [477, 317], [18, 341]]] // No points area
 
 
 function fun() {
@@ -77,30 +77,31 @@ function fun() {
 let oppAttempt = 0
 let isOppFinished = false
 function OppFun() {
-
-    board2.append(plot)
-    x = getRandomInt(4);
-    y = getRandomInt(oppPlotAreas[x].length - 1);
-    plot.style.position = "absolute";
-    plot.style.left = oppPlotAreas[x][y][0] - 20 + 'px';
-    plot.style.top = oppPlotAreas[x][y][1] - 20 + 'px';
-    // console.log(plot.style.left, plot.style.top)
-    OpponentScoreCalc()
-    oppAttempt++
-    // console.log(oppAttempt)
-    if (oppAttempt == 3) {
-        document.querySelector('#player2Button').disabled = true
-        isOppFinished = true
-        if (round < definedRound) {
-            document.querySelector('#roundUpButt').disabled = false
+    if (isPlayerfinished) {
+        board2.append(plot)
+        x = getRandomInt(4);
+        y = getRandomInt(oppPlotAreas[x].length - 1);
+        plot.style.position = "absolute";
+        plot.style.left = oppPlotAreas[x][y][0] - 20 + 'px';
+        plot.style.top = oppPlotAreas[x][y][1] - 20 + 'px';
+        // console.log(plot.style.left, plot.style.top)
+        OpponentScoreCalc()
+        oppAttempt++
+        // console.log(oppAttempt)
+        if (oppAttempt == 3) {
+            document.querySelector('#player2Button').disabled = true
+            isOppFinished = true
+            if (round < definedRound) {
+                document.querySelector('#roundUpButt').disabled = false
+            }
         }
-    }
-    // console.log(isOppFinished)
-    console.log(round)
-    if (round == definedRound && isOppFinished) {
-        setTimeout(() => {
-            winState()
-        }, 1000);
+        // console.log(isOppFinished)
+        console.log(round)
+        if (round == definedRound && isOppFinished) {
+            setTimeout(() => {
+                winState()
+            }, 1000);
+        }
     }
 
 }
@@ -168,10 +169,10 @@ function playerScoreCalc() {
     // console.log(playerPoint)
 }
 
-const oppPlotAreas = [[[1002, 206], [1044, 210], [980, 228], [972, 215]], // 15 points area
-[[1006, 120], [1100, 208], [906, 245], [1006, 293]], // 10 points area
-[[854, 47], [1046, 49], [1183, 255], [1006, 371]], // 5 points area
-[[1216, 43], [807, 35], [1218, 381], [806, 382]]] // No points area
+const oppPlotAreas = [[[1002, 206], [1044, 210], [980, 228], [972, 215], [1035, 183]], // 15 points area
+[[1006, 120], [1100, 208], [906, 245], [1006, 293], [963, 300], [912, 196], [944, 133], [1098, 132]], // 10 points area
+[[854, 47], [1046, 49], [1183, 255], [1006, 371], [888, 71], [1088, 45], [1109, 361], [834, 280]], // 5 points area
+[[1216, 43], [807, 35], [1218, 381], [806, 382], [1262, 191], [855, 17]]] // No points area
 
 function OpponentScoreCalc() {
 
@@ -355,4 +356,8 @@ function main() {
 
 function reLoad() {
     location.reload()
+}
+
+function goToSettings() {
+    window.location.href = 'index.html'
 }
