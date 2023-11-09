@@ -261,7 +261,6 @@ function compPlayer() {
                 }
             }, 2000 * i);
         }
-
     }
     isOppFinished = true
 }
@@ -352,12 +351,15 @@ function main() {
                 compPlayer()
             }, 3000);
             document.querySelector('#roundUpButt').disabled = false
-            if (round == definedRound && isOppFinished == true) {
-                setTimeout(() => {
-                    winState()
-                }, 9000);
+            console.log(round, isOppFinished)
 
-            }
+            setTimeout(() => {
+                if (round == definedRound && isOppFinished == true) {
+                    winState()
+                }
+            }, 9000);
+
+
         }
     } else if (isTwoPlayer) {
         playerFun()
