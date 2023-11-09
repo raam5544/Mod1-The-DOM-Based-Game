@@ -77,6 +77,8 @@ h3 {
     flex-wrap: nowrap;
     width: 30%;
     flex-direction: column;
+    text-align: center;
+
 }
 
 img {
@@ -85,4 +87,8 @@ img {
     mix-blend-mode: multiply;
     color: black;
     font-weight: bolder;
+}
+
+#roundUpButt {
+    margin-top: 98px;
 }

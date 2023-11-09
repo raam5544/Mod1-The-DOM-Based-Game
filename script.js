@@ -34,7 +34,7 @@ if (selection == "twoPlayer") {
 // // Expected output: 0, 1 or 2
 
 
-document.querySelector('#board2').addEventListener('click', (e) => { console.log(e.x, e.y) })
+document.querySelector('#board1').addEventListener('click', (e) => { console.log(e.x, e.y) })
 
 const plot = document.createElement('img')
 plot.src = "dart.jpg"
@@ -73,10 +73,10 @@ let x;
 let y;
 let attempt = 0
 
-const plotAreas = [[[194, 205], [217, 207], [193, 236], [164, 211]], // 15 points area
-[[273, 222], [247, 275], [110, 222], [159, 123]], // 10 points area
-[[346, 207], [295, 353], [48, 263], [94, 78]], // 5 points area
-[[368, 37], [369, 372], [27, 379], [34, 31]]] // No points area
+const plotAreas = [[[234, 186], [236, 209], [210, 233], [266, 230]], // 15 points area
+[[237, 109], [322, 249], [192, 275], [137, 193]], // 10 points area
+[[230, 32], [414, 215], [240, 350], [58, 195]], // 5 points area
+[[29, 22], [453, 27], [448, 380], [28, 384]]] // No points area
 
 
 function fun() {
@@ -103,8 +103,8 @@ function OppFun() {
     x = getRandomInt(4);
     y = getRandomInt(plotAreas[x].length - 1);
     plot.style.position = "absolute";
-    plot.style.left = plotAreas[x][y][0] + 'px';
-    plot.style.top = plotAreas[x][y][1] + 'px';
+    plot.style.left = plotAreas[x][y][0] - 20 + 'px';
+    plot.style.top = plotAreas[x][y][1] - 20 + 'px';
     // console.log(plot.style.left)
     // console.log(plot.style.top)
     playerScoreCalc()
@@ -180,38 +180,38 @@ function playerScoreCalc() {
     // console.log(playerPoint)
 }
 
-const oppPlotAreas = [[[818, 206], [838, 223], [795, 210], [834, 191]], // 15 points area
-[[818, 125], [896, 205], [866, 282], [740, 227]], // 10 points area
-[[708, 87], [962, 53], [963, 233], [815, 361]], // 5 points area
-[[653, 29], [994, 39], [992, 365], [652, 376]]] // No points area
+const oppPlotAreas = [[[1002, 206], [1044, 210], [980, 228], [972, 215]], // 15 points area
+[[1006, 120], [1100, 208], [906, 245], [1006, 293]], // 10 points area
+[[854, 47], [1046, 49], [1183, 255], [1006, 371]], // 5 points area
+[[1216, 43], [807, 35], [1218, 381], [806, 382]]] // No points area
 
 function OpponentScoreCalc() {
 
-    for (let j of plotAreas[0]) {
-        if (j[0] === plotAreas[x][y][0] && j[1] === plotAreas[x][y][1]) {
+    for (let j of oppPlotAreas[0]) {
+        if (j[0] === oppPlotAreas[x][y][0] && j[1] === oppPlotAreas[x][y][1]) {
             oppPoint = 0
             oppPoint = 15
             // console.log('im here')
         }
     }
-    for (let j of plotAreas[1]) {
-        if (j[0] === plotAreas[x][y][0] && j[1] === plotAreas[x][y][1]) {
+    for (let j of oppPlotAreas[1]) {
+        if (j[0] === oppPlotAreas[x][y][0] && j[1] === oppPlotAreas[x][y][1]) {
             oppPoint = 0
             oppPoint = 10
             // console.log('im here')
         }
     }
-    for (let j of plotAreas[2]) {
-        if (j[0] === plotAreas[x][y][0] && j[1] === plotAreas[x][y][1]) {
+    for (let j of oppPlotAreas[2]) {
+        if (j[0] === oppPlotAreas[x][y][0] && j[1] === oppPlotAreas[x][y][1]) {
             oppPoint = 0
             oppPoint = 5
             // console.log('im here')
         }
     }
 
-    for (let j of plotAreas[3]) {
-        if (j[0] === plotAreas[x][y][0] && j[1] === plotAreas[x][y][1]) {
-            playerPoint = 0
+    for (let j of oppPlotAreas[3]) {
+        if (j[0] === oppPlotAreas[x][y][0] && j[1] === oppPlotAreas[x][y][1]) {
+            oppPoint = 0
             // console.log('im here')
         }
     }
@@ -242,9 +242,9 @@ function compPlayer() {
                     x = getRandomInt(4);
                     y = getRandomInt(oppPlotAreas[x].length - 1);
                     plot.style.position = "absolute";
-                    plot.style.left = oppPlotAreas[x][y][0] + 'px';
-                    plot.style.top = oppPlotAreas[x][y][1] + 'px';
-                    console.log('Im here')
+                    plot.style.left = oppPlotAreas[x][y][0] - 20 + 'px';
+                    plot.style.top = oppPlotAreas[x][y][1] - 20 + 'px';
+                    console.log(plot.style.left, plot.style.top)
                     OpponentScoreCalc()
                 }
             }, 2000 * i);
@@ -256,7 +256,9 @@ function compPlayer() {
 roundInfor.textContent = `Round: ${round} `
 function roundUp() {
     playerPoint = 0
+    player1HitPoint.textContent = `Player1 Hit Point: ${playerPoint}`
     oppPoint = 0
+    oppHitPoint.textContent = `Opponent Hit Point: ${oppPoint}`
     // plot.remove()
     document.querySelector('#player1Butt').disabled = false
     attempt = 0
@@ -273,10 +275,9 @@ function playerFun() {
     x = getRandomInt(4);
     y = getRandomInt(plotAreas[x].length - 1);
     plot.style.position = "absolute";
-    plot.style.left = plotAreas[x][y][0] + 'px';
-    plot.style.top = plotAreas[x][y][1] + 'px';
-    // console.log(plot.style.left)
-    // console.log(plot.style.top)
+    plot.style.left = plotAreas[x][y][0] - 20 + 'px';
+    plot.style.top = plotAreas[x][y][1] - 20 + 'px';
+    console.log(plot.style.left, plot.style.top)
     playerScoreCalc()
     attempt++
     if (attempt == 3) {
@@ -323,6 +324,7 @@ let u = 0
 // winState()
 
 function main() {
+    
     playerFun()
 
     if (attempt == 3) {
