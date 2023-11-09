@@ -10,30 +10,6 @@ if (selection == "twoPlayer") {
 }
 
 
-// Load Game function
-
-// document.querySelector('button').addEventListener('click', (e) => {
-//     e.preventDefault()
-//     const numOfRounds = document.querySelector('#roundsNumber')
-//     console.log(numOfRounds)
-// })
-
-// document.getElementsByName('selection').forEach((element) => {
-//     if (element.checked == true) {
-//         console.log(element.value)
-//     }
-// })
-
-
-// function getRandomInt(max) {
-//     return Math.floor(Math.random() * max);
-// }
-
-
-// console.log(getRandomInt(3));
-// // Expected output: 0, 1 or 2
-
-
 document.querySelector('#board1').addEventListener('click', (e) => { console.log(e.x, e.y) })
 
 const plot = document.createElement('img')
@@ -76,7 +52,7 @@ let attempt = 0
 
 const plotAreas = [[[234, 186], [236, 209], [210, 233], [266, 230]], // 15 points area
 [[237, 109], [322, 249], [192, 275], [137, 193]], // 10 points area
-[[230, 32], [414, 215], [240, 350], [58, 195]], // 5 points area
+[[230, 32], [414, 215], [240, 350], [58, 195], [96, 83], [424, 305], [237, 370], [50, 163]], // 5 points area
 [[29, 22], [453, 27], [448, 380], [28, 384]]] // No points area
 
 
@@ -349,12 +325,16 @@ function main() {
         if (attempt == 3) {
             setTimeout(() => {
                 compPlayer()
+
             }, 3000);
-            document.querySelector('#roundUpButt').disabled = false
-            console.log(round, isOppFinished)
 
             setTimeout(() => {
+                document.querySelector('#roundUpButt').disabled = false
+                console.log(round, isOppFinished)
+                console.log(definedRound)
                 if (round == definedRound && isOppFinished == true) {
+                    document.querySelector('#roundUpButt').disabled = true
+                    console.log('im here')
                     winState()
                 }
             }, 9000);
