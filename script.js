@@ -97,23 +97,24 @@ function fun() {
     compPlayer()
 
 }
+let oppAttempt = attempt
 
 function OppFun() {
-    board.append(plot)
+
+    board2.append(plot)
     x = getRandomInt(4);
-    y = getRandomInt(plotAreas[x].length - 1);
+    y = getRandomInt(oppPlotAreas[x].length - 1);
     plot.style.position = "absolute";
-    plot.style.left = plotAreas[x][y][0] - 20 + 'px';
-    plot.style.top = plotAreas[x][y][1] - 20 + 'px';
-    // console.log(plot.style.left)
-    // console.log(plot.style.top)
-    playerScoreCalc()
-    attempt++
-    if (attempt == 3) {
-        document.querySelector('#player1Butt').disabled = true
-        isPlayerfinished = true
+    plot.style.left = oppPlotAreas[x][y][0] - 20 + 'px';
+    plot.style.top = oppPlotAreas[x][y][1] - 20 + 'px';
+    console.log(plot.style.left, plot.style.top)
+    OpponentScoreCalc()
+    oppAttempt++
+    if (oppAttempt == 3) {
+        document.querySelector('#player2Button').disabled = true
+        isOppFinished = true
     }
-    compPlayer()
+    console.log(isPlayerfinished)
 
 }
 
@@ -251,7 +252,7 @@ function compPlayer() {
         }
 
     }
-    compFinished = true
+    isOppFinished = true
 }
 roundInfor.textContent = `Round: ${round} `
 function roundUp() {
@@ -268,6 +269,9 @@ function roundUp() {
     console.log(definedRound)
     if (round == definedRound) {
         document.querySelector('#roundUpButt').disabled = true
+    }
+    if (isTwoPlayer) {
+        document.querySelector('#player2Button').disabled = false
     }
 }
 function playerFun() {
@@ -288,7 +292,7 @@ function playerFun() {
 }
 
 function winState() {
-    if (round == definedRound && compFinished == true) {
+    if (round == definedRound && isOppFinished == true) {
         if (player1AccumulatedScore > oppAccumulatedScore) {
             middle.append(document.createElement('h3').textContent = 'Player wins')
         } else if (oppAccumulatedScore > player1AccumulatedScore) {
@@ -296,7 +300,7 @@ function winState() {
         }
     }
 }
-let compFinished = false
+let isOppFinished = false
 let u = 0
 
 // setTimeout(() => {
@@ -324,18 +328,24 @@ let u = 0
 // winState()
 
 function main() {
-    
-    playerFun()
+    if (!isTwoPlayer) {
+        playerFun()
 
-    if (attempt == 3) {
-        setTimeout(() => {
-            compPlayer()
-        }, 3000);
-        if (round == 3 && compFinished == true) {
+        if (attempt == 3) {
             setTimeout(() => {
-                winState()
-            }, 9000);
+                compPlayer()
+            }, 3000);
+            if (round == 3 && isOppFinished == true) {
+                setTimeout(() => {
+                    winState()
+                }, 9000);
 
+            }
+        }
+    } else if (isTwoPlayer) {
+        playerFun()
+        if (round == 3 && isOppFinished == true) {
+            winState()
         }
     }
 }
