@@ -45,6 +45,20 @@ body {
     background-color: red;
 }
 
+.popUp {
+    height: 100px;
+    width: 200px;
+    position: absolute;
+    background-color: blue;
+    left: 42%;
+    top: 30%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    color: black;
+    border: solid black;
+}
+
 .boardParent {
     border: solid red;
     height: 400px;

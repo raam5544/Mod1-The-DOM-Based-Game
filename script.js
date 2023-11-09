@@ -278,15 +278,16 @@ function playerFun() {
     }
     // console.log(isPlayerfinished)
 }
-
+const popUp = document.querySelector('.popUp')
 function winState() {
+    popUp.style.display = 'flex'
     if (round == definedRound && isOppFinished == true) {
         if (player1AccumulatedScore > oppAccumulatedScore) {
-            middle.append(document.createElement('h3').textContent = 'Player wins')
+            popUp.append(document.createElement('h3').textContent = 'Player wins')
         } else if (oppAccumulatedScore > player1AccumulatedScore) {
-            middle.append(document.createElement('h3').textContent = 'Opponent wins')
+            popUp.append(document.createElement('h3').textContent = 'Opponent wins')
         } else if (oppAccumulatedScore == player1AccumulatedScore) {
-            middle.append(document.createElement('h3').textContent = 'Tie')
+            popUp.append(document.createElement('h3').textContent = 'Tie')
         }
     }
 }
