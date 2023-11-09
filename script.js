@@ -256,6 +256,7 @@ function roundUp() {
     // console.log(round)
     roundInfor.textContent = `Round: ${round} `
     console.log(definedRound)
+    document.querySelector('#roundUpButt').disabled = true
     if (round == definedRound) {
         document.querySelector('#roundUpButt').disabled = true
     }

@@ -103,6 +103,8 @@ img {
     mix-blend-mode: multiply;
     color: black;
     font-weight: bolder;
+    transition: transform 1s ease-in;
+    transform: rotateX('90');
 }
 
 #roundUpButt {
