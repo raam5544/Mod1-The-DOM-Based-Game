@@ -38,7 +38,7 @@ player1HitPoint.textContent = `Player 1 Hit Point: ${playerPoint}`
 
 let oppPoint = 0
 const oppHitPoint = document.querySelector('#oppHitPoint')
-player1HitPoint.textContent = `Opp. Hit Point: ${oppPoint}`
+oppHitPoint.textContent = `Opp. Hit Point: ${oppPoint}`
 
 const middle = document.querySelector('.middle')
 document.querySelector('#roundUpButt').disabled = true
