@@ -278,16 +278,17 @@ function playerFun() {
     }
     // console.log(isPlayerfinished)
 }
+const disp = document.querySelector('.disp')
 const popUp = document.querySelector('.popUp')
 function winState() {
     popUp.style.display = 'flex'
     if (round == definedRound && isOppFinished == true) {
         if (player1AccumulatedScore > oppAccumulatedScore) {
-            popUp.append(document.createElement('h3').textContent = 'Player wins')
+            disp.append(document.createElement('h3').textContent = 'Player wins')
         } else if (oppAccumulatedScore > player1AccumulatedScore) {
-            popUp.append(document.createElement('h3').textContent = 'Opponent wins')
+            disp.append(document.createElement('h3').textContent = 'Opponent wins')
         } else if (oppAccumulatedScore == player1AccumulatedScore) {
-            popUp.append(document.createElement('h3').textContent = 'Tie')
+            disp.append(document.createElement('h3').textContent = 'Tie')
         }
     }
 }
@@ -352,3 +353,6 @@ function main() {
     }
 }
 
+function reLoad() {
+    location.reload()
+}

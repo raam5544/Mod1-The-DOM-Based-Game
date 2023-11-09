@@ -49,14 +49,16 @@ body {
     height: 100px;
     width: 200px;
     position: absolute;
-    background-color: blue;
+    background-color: lightcoral;
     left: 42%;
-    top: 30%;
+    top: 50%;
     display: none;
     align-items: center;
     justify-content: center;
-    color: black;
+    color: rebeccapurple;
     border: solid black;
+    font-family: Arial, Helvetica, sans-serif;
+    flex-direction: column;
 }
 
 .boardParent {
@@ -105,4 +107,8 @@ img {
 
 #roundUpButt {
     margin-top: 98px;
+}
+
+#rePlay {
+    padding: 5px;
 }
