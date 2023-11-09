@@ -1,6 +1,6 @@
 const definedRound = localStorage.getItem('roundsNum');
 const selection = localStorage.getItem('selection')
-console.log(selection)
+// console.log(selection)
 
 let isTwoPlayer = false
 if (selection == "twoPlayer") {
@@ -97,8 +97,8 @@ function fun() {
     compPlayer()
 
 }
-let oppAttempt = attempt
-
+let oppAttempt = 0
+let isOppFinished = false
 function OppFun() {
 
     board2.append(plot)
@@ -107,14 +107,16 @@ function OppFun() {
     plot.style.position = "absolute";
     plot.style.left = oppPlotAreas[x][y][0] - 20 + 'px';
     plot.style.top = oppPlotAreas[x][y][1] - 20 + 'px';
-    console.log(plot.style.left, plot.style.top)
+    // console.log(plot.style.left, plot.style.top)
     OpponentScoreCalc()
     oppAttempt++
+    // console.log(oppAttempt)
     if (oppAttempt == 3) {
         document.querySelector('#player2Button').disabled = true
         isOppFinished = true
     }
-    console.log(isPlayerfinished)
+    console.log(isOppFinished)
+    winState()
 
 }
 
@@ -245,7 +247,7 @@ function compPlayer() {
                     plot.style.position = "absolute";
                     plot.style.left = oppPlotAreas[x][y][0] - 20 + 'px';
                     plot.style.top = oppPlotAreas[x][y][1] - 20 + 'px';
-                    console.log(plot.style.left, plot.style.top)
+                    // console.log(plot.style.left, plot.style.top)
                     OpponentScoreCalc()
                 }
             }, 2000 * i);
@@ -256,6 +258,7 @@ function compPlayer() {
 }
 roundInfor.textContent = `Round: ${round} `
 function roundUp() {
+    isOppFinished = false
     playerPoint = 0
     player1HitPoint.textContent = `Player1 Hit Point: ${playerPoint}`
     oppPoint = 0
@@ -263,8 +266,9 @@ function roundUp() {
     // plot.remove()
     document.querySelector('#player1Butt').disabled = false
     attempt = 0
+    oppAttempt = 0
     round = round + 1
-    console.log(round)
+    // console.log(round)
     roundInfor.textContent = `Round: ${round} `
     console.log(definedRound)
     if (round == definedRound) {
@@ -281,14 +285,14 @@ function playerFun() {
     plot.style.position = "absolute";
     plot.style.left = plotAreas[x][y][0] - 20 + 'px';
     plot.style.top = plotAreas[x][y][1] - 20 + 'px';
-    console.log(plot.style.left, plot.style.top)
+    // console.log(plot.style.left, plot.style.top)
     playerScoreCalc()
     attempt++
     if (attempt == 3) {
         document.querySelector('#player1Butt').disabled = true
         isPlayerfinished = true
     }
-    console.log(isPlayerfinished)
+    // console.log(isPlayerfinished)
 }
 
 function winState() {
@@ -297,10 +301,12 @@ function winState() {
             middle.append(document.createElement('h3').textContent = 'Player wins')
         } else if (oppAccumulatedScore > player1AccumulatedScore) {
             middle.append(document.createElement('h3').textContent = 'Opponent wins')
+        } else if (oppAccumulatedScore == player1AccumulatedScore) {
+            middle.append(document.createElement('h3').textContent = 'Opponent wins')
         }
     }
 }
-let isOppFinished = false
+
 let u = 0
 
 // setTimeout(() => {
@@ -328,6 +334,7 @@ let u = 0
 // winState()
 
 function main() {
+    // console.log(isTwoPlayer)
     if (!isTwoPlayer) {
         playerFun()
 
@@ -335,7 +342,7 @@ function main() {
             setTimeout(() => {
                 compPlayer()
             }, 3000);
-            if (round == 3 && isOppFinished == true) {
+            if (round == definedRound && isOppFinished == true) {
                 setTimeout(() => {
                     winState()
                 }, 9000);
@@ -344,7 +351,9 @@ function main() {
         }
     } else if (isTwoPlayer) {
         playerFun()
-        if (round == 3 && isOppFinished == true) {
+        console.log(round, isOppFinished)
+        if (round == definedRound && isOppFinished == true) {
+            console.log('im here')
             winState()
         }
     }
