@@ -115,7 +115,9 @@ function OppFun() {
     if (oppAttempt == 3) {
         document.querySelector('#player2Button').disabled = true
         isOppFinished = true
-        document.querySelector('#roundUpButt').disabled = false
+        if (round < definedRound) {
+            document.querySelector('#roundUpButt').disabled = false
+        }
     }
     // console.log(isOppFinished)
     console.log(round)
