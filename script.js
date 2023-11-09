@@ -65,6 +65,7 @@ const oppHitPoint = document.querySelector('#oppHitPoint')
 player1HitPoint.textContent = `Opp. Hit Point: ${oppPoint}`
 
 const middle = document.querySelector('.middle')
+document.querySelector('#roundUpButt').disabled = true
 
 function getRandomInt(max) {
     return Math.floor(Math.random() * max);
@@ -114,9 +115,15 @@ function OppFun() {
     if (oppAttempt == 3) {
         document.querySelector('#player2Button').disabled = true
         isOppFinished = true
+        document.querySelector('#roundUpButt').disabled = false
     }
-    console.log(isOppFinished)
-    winState()
+    // console.log(isOppFinished)
+    console.log(round)
+    if (round == definedRound && isOppFinished) {
+        setTimeout(() => {
+            winState()
+        }, 1000);
+    }
 
 }
 
@@ -302,7 +309,7 @@ function winState() {
         } else if (oppAccumulatedScore > player1AccumulatedScore) {
             middle.append(document.createElement('h3').textContent = 'Opponent wins')
         } else if (oppAccumulatedScore == player1AccumulatedScore) {
-            middle.append(document.createElement('h3').textContent = 'Opponent wins')
+            middle.append(document.createElement('h3').textContent = 'Tie')
         }
     }
 }
@@ -342,6 +349,7 @@ function main() {
             setTimeout(() => {
                 compPlayer()
             }, 3000);
+            document.querySelector('#roundUpButt').disabled = false
             if (round == definedRound && isOppFinished == true) {
                 setTimeout(() => {
                     winState()
@@ -352,10 +360,10 @@ function main() {
     } else if (isTwoPlayer) {
         playerFun()
         console.log(round, isOppFinished)
-        if (round == definedRound && isOppFinished == true) {
-            console.log('im here')
-            winState()
-        }
+        // if (round == definedRound && isOppFinished == true) {
+        //     console.log('im here')
+        //     winState()
+        // }
     }
 }
 
