@@ -360,5 +360,5 @@ function reLoad() {
 }
 
 function goToSettings() {
-    window.location.href = 'index.html'
+    window.location.href = 'initialPage.html'
 }
