@@ -154,3 +154,11 @@ img {
     top: 40px;
     left: 45px;
 }
+
+button:hover,
+#roundUpButt:hover {
+    transform: translateY(-5%);
+    transition: transform 2ms ease-in-out;
+    border-radius: 20px;
+    border: solid red;
+}
