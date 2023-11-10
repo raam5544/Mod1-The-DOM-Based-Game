@@ -7,4 +7,6 @@ computer opponent.
 
 Each players will have three attempts per round.
 
+Each player have three attempts per round.
+
 Player 1 should finish his all attempts inorder to other play start attempting
