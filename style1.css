@@ -118,3 +118,39 @@ img {
 .disp {
     padding-bottom: 15px;
 }
+
+.num {
+    position: absolute;
+    top: 40px;
+    left: 235px;
+}
+
+.num1 {
+    position: absolute;
+    top: 120px;
+    left: 230px;
+}
+
+.num2 {
+    position: relative;
+    top: 40px;
+    left: 45px;
+}
+
+.numO {
+    position: absolute;
+    top: 40px;
+    left: 1010px;
+}
+
+.numO1 {
+    position: absolute;
+    top: 120px;
+    left: 1005px;
+}
+
+.numO2 {
+    position: relative;
+    top: 40px;
+    left: 45px;
+}
