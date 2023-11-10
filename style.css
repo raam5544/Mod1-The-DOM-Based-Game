@@ -61,4 +61,6 @@ h1 {
 .loadGameButton:hover {
     border-radius: 20px;
     border: solid red;
+    cursor: pointer;
+    padding: 10px;
 }
