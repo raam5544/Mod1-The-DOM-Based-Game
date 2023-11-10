@@ -1,8 +1,10 @@
 body {
-    background-color: white;
+    background-color: black;
+
 }
 
 .main {
+    margin-top: 50px;
     height: 100%;
     width: 100%;
     display: flex;
@@ -13,7 +15,8 @@ body {
 }
 
 form {
-    color: black;
+    /* color: black; */
+    height: 100%;
 }
 
 .playerSelectionCont {
@@ -41,17 +44,21 @@ form {
     /* Green */
     border: none;
     color: red;
-    padding: 30px 60px;
     text-align: center;
     text-decoration: none;
-    display: inline-block;
+
     font-size: 16px;
     margin: 4px 2px;
     cursor: pointer;
-    font-size: 55px;
-    box-shadow: 0 8px 16px 0 rgba(165, 86, 86, 0.2), 0 6px 20px 0 rgba(21, 7, 7, 0.19);
+
+
 }
 
 h1 {
     color: blue;
+}
+
+.loadGameButton:hover {
+    border-radius: 20px;
+    border: solid red;
 }
