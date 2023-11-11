@@ -283,6 +283,7 @@ function playerFun() {
 }
 const disp = document.querySelector('.disp')
 const popUp = document.querySelector('.popUp')
+
 function winState() {
     popUp.style.display = 'flex'
     if (round == definedRound && isOppFinished == true) {
@@ -335,11 +336,10 @@ function main() {
 
             setTimeout(() => {
                 document.querySelector('#roundUpButt').disabled = false
-                console.log(round, isOppFinished)
-                console.log(definedRound)
+                // console.log(round, isOppFinished)
+                // console.log(definedRound)
                 if (round == definedRound && isOppFinished == true) {
                     document.querySelector('#roundUpButt').disabled = true
-                    console.log('im here')
                     winState()
                 }
             }, 9000);
