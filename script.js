@@ -76,7 +76,8 @@ function fun() {
 }
 let oppAttempt = 0
 let isOppFinished = false
-function OppFun() {
+
+function OppFun() {          // Function for the player 2
     if (isPlayerfinished) {
         board2.append(plot)
         x = getRandomInt(4);
@@ -96,7 +97,7 @@ function OppFun() {
             }
         }
         // console.log(isOppFinished)
-        console.log(round)
+        // console.log(round)
         if (round == definedRound && isOppFinished) {
             setTimeout(() => {
                 winState()
@@ -286,9 +287,9 @@ function winState() {
     popUp.style.display = 'flex'
     if (round == definedRound && isOppFinished == true) {
         if (player1AccumulatedScore > oppAccumulatedScore) {
-            disp.append(document.createElement('h3').textContent = 'Player wins')
+            disp.append(document.createElement('h3').textContent = 'Player Wins')
         } else if (oppAccumulatedScore > player1AccumulatedScore) {
-            disp.append(document.createElement('h3').textContent = 'Opponent wins')
+            disp.append(document.createElement('h3').textContent = 'Opponent Wins')
         } else if (oppAccumulatedScore == player1AccumulatedScore) {
             disp.append(document.createElement('h3').textContent = 'Tie')
         }
